@@ -1,7 +1,47 @@
 {
   "version": 2,
-
-  "projects": {},
+  "projects": {
+    "node1": {
+      "root": "libs/node1",
+      "sourceRoot": "libs/node1/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/node1/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/node1"
+          ],
+          "options": {
+            "jestConfig": "libs/node1/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/node1",
+            "tsConfig": "libs/node1/tsconfig.lib.json",
+            "packageJson": "libs/node1/package.json",
+            "main": "libs/node1/src/index.ts",
+            "assets": [
+              "libs/node1/*.md"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
   }
